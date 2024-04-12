@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--    <bean id="account" class="aze.coders.entity.Account">-->
+    <!--        <property name="user" ref="employer"/>-->
+    <!--    </bean>-->
+    <context:annotation-config/>
+    <context:component-scan base-package="aze.coders"/>
+    <context:property-placeholder location="database.properties"/>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="datasource"/>
+    </bean>
+    <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <constructor-arg value="${jdbc.url}"/>
+        <constructor-arg value="${jdbc.username}"/>
+        <constructor-arg value="${jdbc.password}"/>
+    </bean>
+</beans>
